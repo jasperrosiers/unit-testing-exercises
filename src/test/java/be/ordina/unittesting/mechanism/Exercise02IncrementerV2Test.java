@@ -2,9 +2,9 @@ package be.ordina.unittesting.mechanism;
 
 import be.ordina.unittesting.exceptions.CatastrophicException;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class Exercise02IncrementerV2Test {
+class Exercise02IncrementerV2Test {
 
     /**
      * Let's improve our Incrementer following  Test-Driven Development principles meaning that
@@ -19,7 +19,7 @@ public class Exercise02IncrementerV2Test {
      * Finally, alter the logic of the Incrementer implementation below and see if the tests work!
      */
     class Incrementer {
-        public int compute(int value) {
+        int compute(int value) {
             if (value < 0 || value > 99) {
                 throw new IllegalArgumentException(String.format("'%s' isn't allowed.", value));
             }
@@ -32,32 +32,32 @@ public class Exercise02IncrementerV2Test {
     }
 
     @Test
-    public void given_minus_1_should_result_in_minus_2() {
+    void given_minus_1_should_result_in_minus_2() {
         // TODO
     }
 
     @Test
-    public void given_minus_24_should_result_in_minus_25() {
+    void given_minus_24_should_result_in_minus_25() {
         // TODO
     }
 
     @Test
-    public void given_0_should_throw_an_illegal_argument_exception() {
+    void given_0_should_throw_an_illegal_argument_exception() {
         // TODO
     }
 
     @Test
-    public void given_minus_25_should_throw_an_illegal_argument_exception() {
+    void given_minus_25_should_throw_an_illegal_argument_exception() {
         // TODO
     }
 
     @Test
-    public void given_minus_7_should_throw_an_catastrophic_exception() {
+    void given_minus_7_should_throw_an_catastrophic_exception() {
         // TODO
     }
 
     @Test
-    public void given_minus_1_until_minus_24_besides_minus_7_should_result_in_an_decremented_number() {
+    void given_minus_1_until_minus_24_besides_minus_7_should_result_in_an_decremented_number() {
         // TODO
     }
 }
