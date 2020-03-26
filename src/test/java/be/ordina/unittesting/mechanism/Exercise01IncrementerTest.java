@@ -2,9 +2,9 @@ package be.ordina.unittesting.mechanism;
 
 import be.ordina.unittesting.exceptions.CatastrophicException;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class Exercise01IncrementerTest {
+class Exercise01IncrementerTest {
 
     /**
      * Our Incrementor class is a simple class that has the capability to add one to a given number.
@@ -13,7 +13,7 @@ public class Exercise01IncrementerTest {
      * Also, it really doesn't like the number 13 for some reason.
      */
     class Incrementer {
-        public int compute(int value) {
+        int compute(int value) {
             if (value < 0 || value > 99) {
                 throw new IllegalArgumentException(String.format("'%s' isn't allowed.", value));
             }
@@ -26,7 +26,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_0_should_result_in_1() {
+    void given_0_should_result_in_1() {
         // arrange
         Incrementer incrementer = new Incrementer();
 
@@ -38,7 +38,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_99_should_result_in_100() {
+    void given_99_should_result_in_100() {
         // arrange
         Incrementer incrementer = new Incrementer();
 
@@ -50,7 +50,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_minus_1_should_throw_an_illegal_argument_exception() {
+    void given_minus_1_should_throw_an_illegal_argument_exception() {
         // arrange
         Incrementer incrementer = new Incrementer();
 
@@ -67,7 +67,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_100_should_throw_an_illegal_argument_exception() {
+    void given_100_should_throw_an_illegal_argument_exception() {
         // arrange
         Incrementer incrementer = new Incrementer();
 
@@ -84,7 +84,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_13_should_throw_an_catastrophic_exception() {
+    void given_13_should_throw_an_catastrophic_exception() {
         // arrange
         Incrementer incrementer = new Incrementer();
 
@@ -101,7 +101,7 @@ public class Exercise01IncrementerTest {
     }
 
     @Test
-    public void given_0_until_99_besides_13_should_result_in_an_incremented_number() {
+    void given_0_until_99_besides_13_should_result_in_an_incremented_number() {
         // arrange
         Incrementer incrementer = new Incrementer();
 

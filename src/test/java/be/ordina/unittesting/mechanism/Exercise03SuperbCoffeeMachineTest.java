@@ -4,13 +4,13 @@ import be.ordina.unittesting.model.Portion;
 import be.ordina.unittesting.model.PortionSize;
 import be.ordina.unittesting.mechanism.interfaces.Container;
 import be.ordina.unittesting.model.PortionType;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
@@ -20,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Here we have a ExpressoMachine with a coffee and water container.
  * Basically, if the machine has enough coffee (beans) and water, it can make coffee.
  */
-@RunWith(MockitoJUnitRunner.class)
-public class Exercise03SuperbCoffeeMachineTest {
+@ExtendWith(MockitoExtension.class)
+class Exercise03SuperbCoffeeMachineTest {
     @Mock
     private Container coffeeBeanContainer;
 
@@ -30,18 +30,18 @@ public class Exercise03SuperbCoffeeMachineTest {
 
     private SuperbCoffeeMachine machine;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         machine = new SuperbCoffeeMachine(coffeeBeanContainer, waterContainer);
     }
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         Mockito.verifyNoMoreInteractions(coffeeBeanContainer, waterContainer);
     }
 
     @Test
-    public void given_insufficient_coffee_beans_make_coffee_should_return_no_coffee_portion() {
+    void given_insufficient_coffee_beans_make_coffee_should_return_no_coffee_portion() {
         // given
         final PortionSize portionSize = PortionSize.SMALL;
         Mockito.when(this.coffeeBeanContainer.getPortion(portionSize)).thenReturn(false);
@@ -56,7 +56,7 @@ public class Exercise03SuperbCoffeeMachineTest {
     }
 
     @Test
-    public void given_insufficient_water_make_coffee_should_return_no_coffee_portion() {
+    void given_insufficient_water_make_coffee_should_return_no_coffee_portion() {
         // given
         final PortionSize portionSize = PortionSize.SMALL;
         Mockito.when(this.coffeeBeanContainer.getPortion(portionSize)).thenReturn(true);
@@ -73,7 +73,7 @@ public class Exercise03SuperbCoffeeMachineTest {
     }
 
     @Test
-    public void given_sufficient_coffee_beans_and_water_make_coffee_should_return_coffee_portion() {
+    void given_sufficient_coffee_beans_and_water_make_coffee_should_return_coffee_portion() {
         // given
         final PortionSize portionSize = PortionSize.SMALL;
         Mockito.when(this.coffeeBeanContainer.getPortion(portionSize)).thenReturn(true);
