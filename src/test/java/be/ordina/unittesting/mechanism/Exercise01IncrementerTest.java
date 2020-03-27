@@ -27,34 +27,47 @@ class Exercise01IncrementerTest {
 
     @Test
     void given_0_should_result_in_1() {
-        // TODO Tip: use AssertJ's Assertions.assertThat(...) to assert the result
+        Incrementer incrementer = new Incrementer();
+        Assertions.assertThat(incrementer.compute(0)).isEqualTo(1);
     }
 
     @Test
     void given_99_should_result_in_100() {
-        // TODO
+        Incrementer incrementer = new Incrementer();
+        Assertions.assertThat(incrementer.compute(99)).isEqualTo(100);
     }
 
     @Test
     void given_minus_1_should_throw_an_illegal_argument_exception() {
-        // TODO Tip 1: make use of Assertions.fail to properly have the test fail if the compute
-        // doesn't throw an exception
-        // TODO Tip 2: While catching the exception, verify that it's an instance of IllegalArgumentException
-        // and that exception's message is "'-1' isn't allowed."
+        Incrementer incrementer = new Incrementer();
+        Assertions.assertThatThrownBy(() -> incrementer.compute(-1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("'-1' isn't allowed.");
     }
 
     @Test
     void given_100_should_throw_an_illegal_argument_exception() {
-        // TODO
+        Incrementer incrementer = new Incrementer();
+        Assertions.assertThatThrownBy(() -> incrementer.compute(100))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("'100' isn't allowed.");
     }
 
     @Test
     void given_13_should_throw_an_catastrophic_exception() {
-        // TODO Tip: Don't forget to check whether the exception is an instance of CatastrophicException
+        Incrementer incrementer = new Incrementer();
+        Assertions.assertThatThrownBy(() -> incrementer.compute(13))
+                .isInstanceOf(CatastrophicException.class)
+                .hasMessage("Bad luck!!");
     }
 
     @Test
     void given_0_until_99_besides_13_should_result_in_an_incremented_number() {
-        // TODO Tip: use a for loop to run through the numbers
+        Incrementer incrementer = new Incrementer();
+        for(int i = 0; i<=99; i++) {
+            if(i != 13) {
+                Assertions.assertThat(incrementer.compute(i)).isEqualTo(i+1);
+            }
+        }
     }
 }
