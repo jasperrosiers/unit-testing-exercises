@@ -20,44 +20,105 @@ class Exercise02IncrementerV2Test {
      */
     class Incrementer {
         int compute(int value) {
-            if (value < 0 || value > 99) {
+            if (value >= 0 || value < -24) {
                 throw new IllegalArgumentException(String.format("'%s' isn't allowed.", value));
             }
-            if (value == 13)
+            if (value == -7)
             {
                 throw new CatastrophicException("Bad luck!!");
             }
-            return value+1;
+            return value-1;
         }
     }
 
     @Test
     void given_minus_1_should_result_in_minus_2() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        // act
+        int result = incrementer.compute(-1);
+
+        // assert
+        Assertions.assertThat(result).isEqualTo(-2);
     }
 
     @Test
     void given_minus_24_should_result_in_minus_25() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        // act
+        int result = incrementer.compute(-24);
+
+        // assert
+        Assertions.assertThat(result).isEqualTo(-25);
     }
 
     @Test
     void given_0_should_throw_an_illegal_argument_exception() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        try {
+            // act
+            incrementer.compute(0);
+            Assertions.fail("Should fail!");
+        } catch (Exception ia) {
+            // assert
+            Assertions.assertThat(ia)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("'0' isn't allowed.");
+        }
     }
 
     @Test
     void given_minus_25_should_throw_an_illegal_argument_exception() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        try {
+            // act
+            incrementer.compute(-25);
+            Assertions.fail("Should fail!");
+        } catch (Exception ia) {
+            // assert
+            Assertions.assertThat(ia)
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage("'-25' isn't allowed.");
+        }
     }
 
     @Test
     void given_minus_7_should_throw_an_catastrophic_exception() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        try {
+            // act
+            incrementer.compute(-7);
+            Assertions.fail("Should fail!");
+        } catch (Exception ia) {
+            // assert
+            Assertions.assertThat(ia)
+                    .isInstanceOf(CatastrophicException.class)
+                    .hasMessage("Bad luck!!");
+        }
     }
 
     @Test
     void given_minus_1_until_minus_24_besides_minus_7_should_result_in_an_decremented_number() {
-        // TODO
+        // arrange
+        Incrementer incrementer = new Incrementer();
+
+        // act
+        for (int i=-1; i<-24; i--) {
+            if (i == -7) {
+                continue;
+            }
+            int result = incrementer.compute(i);
+            // assert
+            Assertions.assertThat(result).isEqualTo(i-1);
+        }
     }
 }
